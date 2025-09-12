@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Portfolio Website</title>
+  </head>
+  <div
+    id="username-modal"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+  >
+    <div
+      id="modal-content"
+      class="bg-gray-900 rounded-xl p-8 scale-95 opacity-0 transition-all duration-300"
+    >
+      <form onsubmit="setUsername(event)">
+        <label for="username-input" class="block text-white mb-2"
+          >Enter your name:</label
+        >
+        <input
+          id="username-input"
+          type="text"
+          class="w-full px-4 py-2 rounded-lg mb-4 bg-gray-800 text-white"
+          autocomplete="off"
+        />
+        <div class="flex justify-center gap-2">
+          <button
+            type="submit"
+            class="w-50 px-4 py-2 bg-blue-600 rounded-lg text-white"
+          >
+            Submit
+          </button>
+          <button
+            type="button"
+            onclick="skipUsername()"
+            class="w-50 px-4 py-2 bg-gray-700 rounded-lg text-white"
+          >
+            Skip
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <body class="bg-gray-900 text-white font-sans">
+    <!-- Header with improved styling -->
+    <header
+      class="fixed top-0 w-full bg-gray-800/95 backdrop-blur-sm border-b border-gray-700 z-50 transition-all duration-300"
+    >
+      <div
+        class="container mx-auto px-4 py-3 flex items-center justify-between"
+      >
+        <!-- Logo Website -->
+        <div class="logo-icon flex items-center space-x-3">
+          <div
+            class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center"
+          >
+            <span class="text-white font-bold text-lg">CT</span>
+          </div>
+          <span
+            class="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
+          >
+            Charish Trisuard
+          </span>
+        </div>
+
+        <!-- Navbar Website -->
+        <nav class="hidden md:block">
+          <ul class="flex space-x-2">
+            <li>
+              <a
+                class="px-4 py-2 rounded-lg bg-gray-700 hover:bg-blue-600 transition-colors duration-300 text-sm font-medium"
+                href="#home"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                class="px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors duration-300 text-sm font-medium"
+                href="#profile"
+                >Profile</a
+              >
+            </li>
+            <li>
+              <a
+                class="px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors duration-300 text-sm font-medium"
+                href="#portfolio"
+                >Portfolio</a
+              >
+            </li>
+            <li>
+              <a
+                class="px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors duration-300 text-sm font-medium"
+                href="#message-us"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Mobile menu button -->
+        <button
+          class="md:hidden p-2 rounded-lg hover:bg-gray-700 transition-colors duration-300"
+          onclick="toggleMobileMenu()"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div
+        id="mobile-menu"
+        class="md:hidden bg-gray-800 border-t border-gray-700 hidden"
+      >
+        <div class="px-4 py-2 space-y-1">
+          <a
+            class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors duration-300"
+            href="#home"
+            >Home</a
+          >
+          <a
+            class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors duration-300"
+            href="#profile"
+            >Profile</a
+          >
+          <a
+            class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors duration-300"
+            href="#portfolio"
+            >Portfolio</a
+          >
+          <a
+            class="block px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors duration-300"
+            href="#message-us"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main class="pt-16">
+      <!-- Hero Section -->
+      <section
+        id="home"
+        class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden"
+      >
+        <!-- Animated background elements -->
+        <div class="absolute inset-0">
+          <div
+            class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"
+          ></div>
+          <div
+            class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"
+          ></div>
+        </div>
+
+        <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
+          <h1 class="text-6xl md:text-8xl font-bold mb-6 animate-fade-in">
+            Welcome
+            <span
+              id="welcome-user"
+              class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse"
+            >
+              User </span
+            >!
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-300 mb-8 animate-slide-up">
+            Crafting digital experiences with passion and precision
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="#portfolio"
+              class="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+            >
+              View Portfolio
+            </a>
+            <a
+              href="#message-us"
+              class="px-8 py-3 border border-gray-600 rounded-lg font-medium hover:bg-gray-800 transition-all duration-300 transform hover:scale-105"
+            >
+              Get In Touch
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Profile Section -->
+      <section
+        id="profile"
+        class="min-h-screen flex items-center justify-center bg-gray-800 relative"
+      >
+        <div class="container mx-auto px-4 py-16">
+          <div class="max-w-6xl mx-auto">
+            <h2
+              class="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
+            >
+              About Me
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+              <div class="space-y-6">
+                <p class="text-lg text-gray-300 leading-relaxed">
+                  I am a recent Informatics Engineering graduate with a strong
+                  passion for mobile development. I have intermediate skills in
+                  Kotlin and Flutter, and I am eager to further develop my
+                  expertise in building efficient and user-friendly mobile
+                  applications. I gained experience as a Mobile Developer at
+                  Budi Luhur University and as a Mobile Development Cohort at
+                  Bangkit Academy 2024.
+                </p>
+
+                <p class="text-lg text-gray-300 leading-relaxed">
+                  As a hardworking and curious individual, I am always eager to
+                  learn new technologies, explore new things in tech, and
+                  continuously improve my skills. Beyond mobile, I am also
+                  excited about front-end web development and enjoy
+                  collaborating with teams to ensure projects run smoothly and
+                  efficiently. I am currently seeking opportunities that allow
+                  me to grow as a Mobile Developer and contribute to impactful
+                  projects.
+                </p>
+
+                <!-- Skills -->
+                <div class="space-y-4">
+                  <h3 class="text-xl font-semibold text-blue-400">
+                    Core Skills
+                  </h3>
+                  <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    <div
+                      class="bg-gray-700 px-3 py-2 rounded-lg text-center text-sm"
+                    >
+                      JavaScript
+                    </div>
+                    <div
+                      class="bg-gray-700 px-3 py-2 rounded-lg text-center text-sm"
+                    >
+                      React
+                    </div>
+                    <div
+                      class="bg-gray-700 px-3 py-2 rounded-lg text-center text-sm"
+                    >
+                      Node.js
+                    </div>
+                    <div
+                      class="bg-gray-700 px-3 py-2 rounded-lg text-center text-sm"
+                    >
+                      Flutter
+                    </div>
+                    <div
+                      class="bg-gray-700 px-3 py-2 rounded-lg text-center text-sm"
+                    >
+                      Kotlin
+                    </div>
+                    <div
+                      class="bg-gray-700 px-3 py-2 rounded-lg text-center text-sm"
+                    >
+                      CSS/Tailwind
+                    </div>
+                    <div
+                      class="bg-gray-700 px-3 py-2 rounded-lg text-center text-sm"
+                    >
+                      Git
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex justify-center">
+                <div class="relative">
+                  <div
+                    class="w-80 h-80 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl"
+                  >
+                    <div
+                      class="w-72 h-72 bg-gray-800 rounded-full flex items-center justify-center"
+                    >
+                      <span
+                        class="text-6xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
+                      >
+                        <img
+                          src="assets/FotoCv.jpg"
+                          alt="Profile Picture"
+                          class="w-64 h-64 rounded-full object-cover border-4 shadow-lg"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    class="absolute -top-4 -right-4 w-8 h-8 bg-green-500 rounded-full animate-ping"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Portfolio Section -->
+      <section
+        id="portfolio"
+        class="min-h-screen flex items-center justify-center bg-gray-900 py-16"
+      >
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            <h2
+              class="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
+            >
+              Portfolio
+            </h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <!-- Project 1 -->
+              <div
+                class="bg-gray-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+              >
+                <div
+                  class="h-48 bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center"
+                >
+                  <span class="text-2xl font-bold">Project 1</span>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold mb-3">
+                    E-Commerce Platform
+                  </h3>
+                  <p class="text-gray-400 mb-4">
+                    A full-stack e-commerce solution with modern UI/UX and
+                    secure payment integration.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="text-xs bg-blue-600 px-2 py-1 rounded"
+                      >React</span
+                    >
+                    <span class="text-xs bg-green-600 px-2 py-1 rounded"
+                      >Node.js</span
+                    >
+                    <span class="text-xs bg-purple-600 px-2 py-1 rounded"
+                      >MongoDB</span
+                    >
+                  </div>
+                  <button
+                    class="w-full py-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-colors duration-300"
+                  >
+                    View Project
+                  </button>
+                </div>
+              </div>
+
+              <!-- Project 2 -->
+              <div
+                class="bg-gray-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+              >
+                <div
+                  class="h-48 bg-gradient-to-br from-green-600 to-teal-600 flex items-center justify-center"
+                >
+                  <span class="text-2xl font-bold">Project 2</span>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold mb-3">
+                    Task Management App
+                  </h3>
+                  <p class="text-gray-400 mb-4">
+                    A collaborative task management application with real-time
+                    updates and team features.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="text-xs bg-blue-600 px-2 py-1 rounded"
+                      >Vue.js</span
+                    >
+                    <span class="text-xs bg-yellow-600 px-2 py-1 rounded"
+                      >Express</span
+                    >
+                    <span class="text-xs bg-red-600 px-2 py-1 rounded"
+                      >Redis</span
+                    >
+                  </div>
+                  <button
+                    class="w-full py-2 bg-gradient-to-r from-green-600 to-teal-600 rounded-lg hover:from-green-700 hover:to-teal-700 transition-colors duration-300"
+                  >
+                    View Project
+                  </button>
+                </div>
+              </div>
+
+              <!-- Project 3 -->
+              <div
+                class="bg-gray-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+              >
+                <div
+                  class="h-48 bg-gradient-to-br from-pink-600 to-red-600 flex items-center justify-center"
+                >
+                  <span class="text-2xl font-bold">Project 3</span>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold mb-3">
+                    Data Visualization Dashboard
+                  </h3>
+                  <p class="text-gray-400 mb-4">
+                    Interactive dashboard for complex data analysis with
+                    beautiful charts and insights.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="text-xs bg-blue-600 px-2 py-1 rounded"
+                      >D3.js</span
+                    >
+                    <span class="text-xs bg-orange-600 px-2 py-1 rounded"
+                      >Python</span
+                    >
+                    <span class="text-xs bg-indigo-600 px-2 py-1 rounded"
+                      >PostgreSQL</span
+                    >
+                  </div>
+                  <button
+                    class="w-full py-2 bg-gradient-to-r from-pink-600 to-red-600 rounded-lg hover:from-pink-700 hover:to-red-700 transition-colors duration-300"
+                  >
+                    View Project
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section
+        id="message-us"
+        class="min-h-screen flex flex-col items-center justify-center bg-gray-800 py-16"
+      >
+        <div class="container mx-auto px-4">
+          <div class="max-w-4xl mx-auto">
+            <h2
+              class="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
+            >
+              Get In Touch
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-12">
+              <!-- Contact Info -->
+              <div class="space-y-8">
+                <div>
+                  <h3 class="text-2xl font-semibold mb-6 text-blue-400">
+                    Let's Connect
+                  </h3>
+                  <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                    I'm always interested in new opportunities and exciting
+                    projects. Whether you have a question or just want to say
+                    hi, feel free to reach out!
+                  </p>
+                </div>
+
+                <div class="space-y-4">
+                  <div class="flex items-center space-x-4">
+                    <div
+                      class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center"
+                    >
+                      <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <p class="text-gray-400 text-sm">Email</p>
+                      <p class="text-white">charish12867@gmail.com</p>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center space-x-4">
+                    <div
+                      class="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center"
+                    >
+                      <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                        ></path>
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <p class="text-gray-400 text-sm">Location</p>
+                      <p class="text-white">Indonesia</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Contact Form -->
+              <div class="bg-gray-900 p-8 rounded-xl shadow-2xl">
+                <form class="space-y-6">
+                  <div>
+                    <label
+                      for="name"
+                      class="block text-sm font-medium text-gray-300 mb-2"
+                      >Name</label
+                    >
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 text-white placeholder-gray-400"
+                      placeholder="Your full name"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      for="email"
+                      class="block text-sm font-medium text-gray-300 mb-2"
+                      >Email</label
+                    >
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 text-white placeholder-gray-400"
+                      placeholder="your.email@example.com"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      for="message"
+                      class="block text-sm font-medium text-gray-300 mb-2"
+                      >Message</label
+                    >
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows="4"
+                      class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 text-white placeholder-gray-400 resize-none"
+                      placeholder="Tell me about your project..."
+                    ></textarea>
+                  </div>
+
+                  <button
+                    type="button"
+                    onclick="validateForm();"
+                    class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  >
+                    Send Message
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-700">
+      <div class="container mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="text-gray-400 text-sm mb-4 md:mb-0">
+            &copy; 2025 Charish Trisuard. All rights reserved.
+          </div>
+          <div class="flex space-x-6">
+            <a
+              href="#"
+              class="text-gray-400 hover:text-blue-400 transition-colors duration-300"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3.25a5.25 5.25 0 1 1 0 10.5 5.25 5.25 0 0 1 0-10.5zm0 1.5a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5zm5.25.75a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile"
+              class="text-gray-400 hover:text-blue-400 transition-colors duration-300"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://github.com/Charish128"
+              class="text-gray-400 hover:text-blue-400 transition-colors duration-300"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JS External -->
+    <script src="js/script.js"></script>
+  </body>
+</html>
